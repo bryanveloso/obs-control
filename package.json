@@ -4,13 +4,49 @@
   "description": "Shows the streaming/recording status of a linked installation of OBS Studio.",
   "version": "0.0.1",
   "main": "./out/extension.js",
+  "engines": {
+    "vscode": "^1.22.0"
+  },
+  "contributes": {
+    "views": {
+      "explorer": [
+        {
+          "type": "webview",
+          "id": "obsControl.statusView",
+          "name": "OBS Control"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "OBS Control",
+      "properties": {
+        "obsControl.host": {
+          "type": "string",
+          "default": "localhost",
+          "description": "OBS Studio WebSocket host"
+        },
+        "obsControl.port": {
+          "type": "number",
+          "default": 4455,
+          "description": "OBS Studio WebSocket port"
+        },
+        "obsControl.password": {
+          "type": "string",
+          "default": "",
+          "description": "OBS Studio Websocket password"
+        },
+        "obsControl.autoConnect": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically connect to OBS on startup"
+        }
+      }
+    }
+  },
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./"
-  },
-  "engines": {
-    "vscode": "^1.22.0"
   },
   "dependencies": {
     "obs-websocket-js": "^5.0.6"

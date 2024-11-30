@@ -3,10 +3,13 @@
   "displayName": "OBS Control",
   "description": "Shows the streaming/recording status of a linked installation of OBS Studio.",
   "version": "0.0.1",
-  "main": "./out/extension.js",
   "engines": {
-    "vscode": "^1.22.0"
+    "vscode": "^1.80.0"
   },
+  "categories": [
+    "Other"
+  ],
+  "main": "./out/extension.js",
   "contributes": {
     "views": {
       "explorer": [
@@ -20,15 +23,10 @@
     "configuration": {
       "title": "OBS Control",
       "properties": {
-        "obsControl.host": {
+        "obsControl.url": {
           "type": "string",
-          "default": "localhost",
-          "description": "OBS Studio WebSocket host"
-        },
-        "obsControl.port": {
-          "type": "number",
-          "default": 4455,
-          "description": "OBS Studio WebSocket port"
+          "default": "ws://localhost:4455",
+          "description": "OBS Studio WebSocket URL (host and port)"
         },
         "obsControl.password": {
           "type": "string",
@@ -41,7 +39,29 @@
           "description": "Automatically connect to OBS on startup"
         }
       }
-    }
+    },
+    "commands": [
+      {
+        "command": "obsControl.startRecording",
+        "title": "Start Recording",
+        "category": "OBS Control"
+      },
+      {
+        "command": "obsControl.stopRecording",
+        "title": "Stop Recording",
+        "category": "OBS Control"
+      },
+      {
+        "command": "obsControl.startStreaming",
+        "title": "Start Streaming",
+        "category": "OBS Control"
+      },
+      {
+        "command": "obsControl.stopStreaming",
+        "title": "Stop Streaming",
+        "category": "OBS Control"
+      }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
@@ -49,6 +69,7 @@
     "watch": "tsc -watch -p ./"
   },
   "dependencies": {
+    "@vscode/codicons": "^0.0.36",
     "obs-websocket-js": "^5.0.6"
   },
   "devDependencies": {

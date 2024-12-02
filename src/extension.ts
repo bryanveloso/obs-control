@@ -149,29 +149,40 @@ class OBSControlViewProvider implements vscode.WebviewViewProvider {
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <link href="${codiconsUri}" rel="stylesheet" />
         <style>
-          :root {
-            --container-padding: 20px;
-          }
+          .status-container { 
+          padding-top: 7px; }
 
           .status-section {
             display: flex;
-            justify-content: space-between; 
+            justify-content: space-between;
+            line-height: 1.5;
+          }
+
+          .status-section h2 {
+            margin: 0;
+            font-size: 11px;
+            font-weight: 400;
+            color: var(--vscode-descriptionForeground);
+          }
+
+          .status-section span {
+            font-size: 11px;
           }
         </style>
       </head>
       <body>
-        <div class="status-section">
-          <div>
+        <div class="status-container">
+          <div class="status-section">
             <h2>Scene</h2>
-            <p>${this.status.currentScene}</p>
+            <span>${this.status.currentScene}</span>
           </div>
-          <div>
+          <div class="status-section">
             <h2>Streaming</h2>
-            <p>${this.status.streaming ? "On" : "Off"}</p>
+            <span>${this.status.streaming ? "On" : "Off"}</span>
           </div>
-          <div>
+          <div class="status-section">
             <h2>Recording</h2>
-            <p>${this.status.recording ? "On" : "Off"}</p>
+            <span>${this.status.recording ? "On" : "Off"}</span>
           </div>
         </div>
       </body>
